@@ -1,0 +1,7 @@
+data/Audio_clips
+data/Metadata
+data/Personality_Scores
+data/BFI_Item_Answers
+data/processed_data.pkl
+
+test.ipynb
