@@ -1,6 +1,15 @@
+from argon2 import Parameters
 import librosa
 import os
 import pandas as pd
+
+configs = [
+    [2048, 512, 2048],
+    [2048, 512, 1024],
+    [2048, 1024, 1024],
+    [1024, 512, 1024],
+    [1024, 256, 1024]
+]
 
 def process_data(personality_dir="data/Personality_Scores", metadata_dir="data/Metadata", audio_dir="data/Audio_clips"):
     df_personality = get_personality_scores(personality_dir)
@@ -43,9 +52,12 @@ def get_features(data_dir_path):
         f = os.path.join(data_dir_path, filename)
         
         y, sr = librosa.load(f)
-        s = librosa.feature.melspectrogram(y=y, sr=sr)
+        output = []
+        for config in configs:
+            s = librosa.feature.melspectrogram(y=y, sr=sr, n_fft=config[0], hop_length=config[1], win_length=config[2])
+            output.append(s)
         
-        data.append([filename.split(".")[0], s])
+        data.append([filename.split(".")[0], output])
     
     df = pd.DataFrame(data, columns=["Clip_ID", "features"])
     return df
@@ -56,3 +68,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# https://librosa.org/doc/main/generated/librosa.feature.melspectrogram.html
+# play with Parameters
+# multiple features. 2d -> 3d
