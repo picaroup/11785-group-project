@@ -1,7 +1,7 @@
-from argon2 import Parameters
 import librosa
 import os
 import pandas as pd
+import numpy as np
 
 configs = [
     [2048, 512, 2048],
@@ -53,10 +53,17 @@ def get_features(data_dir_path):
         
         y, sr = librosa.load(f)
         output = []
+        pad_len = 0
         for config in configs:
             s = librosa.feature.melspectrogram(y=y, sr=sr, n_fft=config[0], hop_length=config[1], win_length=config[2])
+            pad_len = max(pad_len, len(s[0]))
             output.append(s)
         
+        for i, cur in enumerate(output):
+            cur = np.pad(cur, ((0,0), (0, pad_len-len(cur[0]))))
+            output[i] = cur
+        output = np.array(output)
+
         data.append([filename.split(".")[0], output])
     
     df = pd.DataFrame(data, columns=["Clip_ID", "features"])
