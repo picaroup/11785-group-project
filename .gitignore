@@ -3,5 +3,6 @@ data/Metadata
 data/Personality_Scores
 data/BFI_Item_Answers
 data/processed_data.pkl
+.ipynb_checkpoints
 
 test.ipynb'.ipynb_checkpoints' 
