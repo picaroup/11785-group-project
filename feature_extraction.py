@@ -1,4 +1,3 @@
-from argon2 import Parameters
 import librosa
 import os
 import pandas as pd
@@ -60,9 +59,17 @@ def get_features(data_dir_path):
             pad_len = max(pad_len, len(s[0]))
             output.append(s)
         
+<<<<<<< HEAD
         for i, out in enumerate(output):
             out = np.pad()
         
+=======
+        for i, cur in enumerate(output):
+            cur = np.pad(cur, ((0,0), (0, pad_len-len(cur[0]))))
+            output[i] = cur
+        output = np.array(output)
+
+>>>>>>> eea2cd3da36427b5ff364cae61675e06f5fa3828
         data.append([filename.split(".")[0], output])
     
     df = pd.DataFrame(data, columns=["Clip_ID", "features"])
