@@ -5,10 +5,18 @@
 ### Download Data
 - To download the data, in the /data/ directory, run `bash download.sh`
 
-### Feature Extraction
+### Numerical Feature Extraction
 - In the /Code/ directory, run the `python3 feature_extraction.py`
 - The process data will be stored in /data/processed_data.pkl
 - The data is the average judge score for each of the audio files
+- This feature extraction method is used in our analysis
+
+### Categorical Feature Extraction
+- In the /Code/ directory, run the `categorical_feature_extraction.ipynb` file
+- This creates a score of 0 or 1 for each personality trait and each audio file
+- For each judge, if the score for that presonality trait is more than the judge's average score fo the perosnality trait, it is assigned a score of 1 for that judge. If it is below the average, it is assigned a score of 0 for that judge
+- If the audio file is assigned a score of 1 from 6 or more of the 11 judges for a personality trait, it is assigned an overall score of 1 for that personality trait
+- If it is not assigned a score of 1 from 6 or more judges for a personality trait, it is assigned an overall score of 0 for that personality trait
 
 ## Models
 - The models are in the `/Code/` directory
