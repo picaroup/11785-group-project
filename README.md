@@ -27,7 +27,7 @@
   - The model parameters and training and validation accuracies are saved to a csv file on the Google Drive
   - Graphs of the training and validation data for each of the personality traits are generated
 
-- The `baseline_all5_feats_final.ipynb` file makes redictions for the five personality traits based on a logistic regression model
+- The `baseline_all5_feats_final.ipynb` file makes predictions for the five personality traits based on a logistic regression model that we have considered as baseline model and mimics the analysis conducted by the reserach paper that we have referred for the baseline.
 
 - The `CNN_complex_N_blocks_with_plots.ipynb` files creates CNN models with blocks containing spatial and feature mixing CNN layers with `N` blocks in a style inspired by `Convnext`
 
